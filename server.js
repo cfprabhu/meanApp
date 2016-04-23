@@ -86,12 +86,13 @@ app.delete('/deleteSales/:id', function(req, res){
 
 app.put('/updateSales', function(req, res){
 	console.log("Received Sales request");
-	db.Department.findAndModify({query: {"_id": new mongojs.ObjectId(req.body._id)}, 
-										update: {$set: {name: req.body.name, location: req.body.location}}
-										}, function(err, docs){
-											console.log(docs);
-											res.json(docs);
-										})
+	console.log(req);
+	db.Sales.findAndModify({query: {"_id": new mongojs.ObjectId(req.body._id)}, 
+		update: {$set: {name: req.body.name, date: req.body.date, did: req.body.did, pname: req.body.pname, amount: req.body.amount}}
+		}, function(err, docs){
+			console.log(docs);
+			res.json(docs);
+		})
 	});
 
 app.listen(3000);

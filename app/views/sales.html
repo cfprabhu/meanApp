@@ -2,6 +2,7 @@
 <div class="container">
 	<div ng-show="showAddForm">
 		<h2><span  ng-show="!editForm">Add </span><span ng-show="editForm">Edit </span>Sale</h2>
+		<a href="/#/sales" class="btn btn-info pull-right" role="button" data-ng-click="addForm(0)">Sales List</a><br>
 		<form role="form">
 			<div class="form-group">
 				<label for="exampleInputEmail1">Sales Date</label>
@@ -42,16 +43,16 @@
 				<tr>
 					<td>Sale Date</td>
 					<td>Sales Person Name</td>
-					<td>Department</td>
+					<!-- <td>Department</td> -->
 					<td>Product Name</td>
 					<td>Sales Amount</td>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="sale in sales" class='info' ng-show="departments.length">
-					<td><a ng-href="#/sales/{{sales._id}}">{{sale.date}}</a></td>
+					<td><a ng-href="#/sales/{{sale._id}}">{{sale.date}}</a></td>
 					<td>{{sale.name}}</td>
-					<td>{{sale.did}}</td>
+					<!-- <td>{{sale.did}}</td> -->
 					<td>{{sale.pname}}</td>
 					<td>{{sale.amount}}</td>
 					<td>

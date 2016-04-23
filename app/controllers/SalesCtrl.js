@@ -48,7 +48,7 @@
 
     	//add new Department
         var onAddSalesCompleted = function(response){
-            $scope.sales = response.data;
+            $scope.sale = response.data;
             console.log(response.data);
             refresh();
             
@@ -67,7 +67,7 @@
 
         //get persons by Id
         var onGetByIdCompleted = function(response){
-            $scope.sales = response.data;
+            $scope.sale = response.data;
             console.log(response.data);
             $scope.showAddForm = 1;
         };
@@ -91,30 +91,44 @@
         };
 
         var onSalesDeleteCompleted = function(response){
-            $scope.sales = response.data;
+            $scope.sale = response.data;
             console.log(response.data);
             refresh();
         };
         //end delete Department
 
         //update Department
-        $scope.updateSales = function(sales){
+        $scope.updateSales = function(sale){
+            // console.log(sale);
         	var updateAlert = confirm('Are you sure to save');
         	if(updateAlert){
-        		$http.put("/updateSales", department)
+        		$http.put("/updateSales", sale)
                 .then(onUpdateSalesCompleted, onError);
-                    console.log(department);
+                    console.log(sale);
                 $scope.editForm = 0;
                 $scope.showAddForm = 0;
         	}
         };
 
         var onUpdateSalesCompleted = function(response){
-            $scope.sales = null;//response.data;
+            $scope.sale = null;//response.data;
             console.log(response.data);
             refresh();
         };
         //end update Department
+
+        // var onGetByIdCompleted = function(response){
+        //     $scope.department = response.data;
+        //     console.log(response.data);
+        //     $scope.showAddForm = 1;
+        // };
+
+        // $scope.searchDepartment = function(id){
+        //     $http.get('/department/' + id)
+        //             .then(onGetByIdCompleted, onError);
+        //     console.log(id);
+        //     $scope.editForm = 1;
+        // };
 	}
 	myProductApp.controller('SalesCtrl', SalesCtrl);
 }())
