@@ -1,0 +1,47 @@
+<h2>DEPARTMENT</h2>
+<div class="container">
+	<div ng-show="showAddForm">
+		<h2><span  ng-show="!editForm">Add </span><span ng-show="editForm">Edit </span>department</h2>
+		<form role="form">
+			<div class="form-group">
+				<label for="exampleInputEmail1">Department Name</label>
+				<input type="text" class="form-control" id="DepartmentName" ng-model='department.name' placeholder="Department Name">
+			</div>
+			<div class="form-group">
+				<label for="exampleInputPassword1">Location</label>
+				<input type="text" class="form-control" id="Location" placeholder="Location" ng-model='department.location'>
+			</div>
+			
+			<button type="submit" ng-show="!editForm" class="btn btn-default" data-ng-click="addDepartment(department);">Submit</button>
+			<button type="submit" ng-show="editForm" class="btn btn-default" data-ng-click="updateDepartment(department);">Save</button>
+		</form>
+	</div>
+	
+	<div ng-show="!showAddForm">
+		<button data-ng-click="addForm(1)" class="btn btn-info btn-sm pull-right">Add Department</button>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<td>Department Name</td>
+					<td>Location</td>
+					<td>Action</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="department in departments" class='info' ng-show="departments.length">
+					<td><a ng-href="#/department/{{department._id}}">{{department.name}}</a></td>
+					<td>{{department.location}}</td>
+					<td>
+						<button ng-click="searchDepartment(department._id);" class="btn btn-info btn-sm">Edit</button>
+						<button ng-click="deleteDepartment(department._id);" class="btn btn-info btn-sm">Delete</button>
+					</td>
+				</tr>
+				<tr ng-show="!departments.length">
+					<td></td>
+					<td style="color:red">No records</td>
+					<td></td>
+				</tr>	
+			</tbody>
+		</table>
+	</div>		
+</div>	

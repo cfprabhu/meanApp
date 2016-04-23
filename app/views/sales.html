@@ -1,0 +1,70 @@
+<h2>SALES</h2>
+<div class="container">
+	<div ng-show="showAddForm">
+		<h2><span  ng-show="!editForm">Add </span><span ng-show="editForm">Edit </span>Sale</h2>
+		<form role="form">
+			<div class="form-group">
+				<label for="exampleInputEmail1">Sales Date</label>
+				<input type="text" class="form-control"  id="SalesDate" ng-model='sale.date' placeholder="Sales Date">
+			</div>
+			<div class="form-group">
+				<label for="exampleInputPassword1">Sales Person Name</label>
+				<input type="text" class="form-control" id="SalesPersonName" placeholder="Sales Person Name" ng-model='sale.name'>
+			</div>
+			
+			<div class="form-group">
+				<label for="exampleInputPassword1">Department</label>
+				<select class="form-control" id="Department" placeholder="Department" ng-model='sale.did'>
+				  <option>1</option>
+				  <option ng-repeat="department in departments" value="{{department._id}}">{{department.name}}</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="exampleInputPassword1">Product Name</label>
+				<input type="text" class="form-control" id="ProductName" placeholder="Product Name" ng-model='sale.pname'>
+			</div>
+
+			<div class="form-group">
+				<label for="exampleInputPassword1">Sales Amount</label>
+				<input type="text" class="form-control" id="SalesAmount" placeholder="Sales Amount" ng-model='sale.amount'>
+			</div>
+			
+			<button type="submit" ng-show="!editForm" class="btn btn-default" data-ng-click="addSales(sale);">Submit</button>
+			<button type="submit" ng-show="editForm" class="btn btn-default" data-ng-click="updateSales(sale);">Save</button>
+		</form>
+	</div>
+	
+	<div ng-show="!showAddForm">
+		<button data-ng-click="addForm(1)" class="btn btn-info btn-sm pull-right">Add Sale</button>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<td>Sale Date</td>
+					<td>Sales Person Name</td>
+					<td>Department</td>
+					<td>Product Name</td>
+					<td>Sales Amount</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="sale in sales" class='info' ng-show="departments.length">
+					<td><a ng-href="#/sales/{{sales._id}}">{{sale.date}}</a></td>
+					<td>{{sale.name}}</td>
+					<td>{{sale.did}}</td>
+					<td>{{sale.pname}}</td>
+					<td>{{sale.amount}}</td>
+					<td>
+						<button ng-click="searchSales(sale._id);" class="btn btn-info btn-sm">Edit</button>
+						<button ng-click="deleteSales(sale._id);" class="btn btn-info btn-sm">Delete</button>
+					</td>
+				</tr>
+				<tr ng-show="!sales.length">
+					<td></td>
+					<td style="color:red">No records</td>
+					<td></td>
+				</tr>	
+			</tbody>
+		</table>
+	</div>		
+</div>	
